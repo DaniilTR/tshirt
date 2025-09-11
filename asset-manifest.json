@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/tshirt/static/css/main.c82bcf74.css",
-    "main.js": "/tshirt/static/js/main.bccf68b1.js",
+    "main.js": "/tshirt/static/js/main.b32ea2a6.js",
     "static/js/453.0464c544.chunk.js": "/tshirt/static/js/453.0464c544.chunk.js",
     "index.html": "/tshirt/index.html",
     "main.c82bcf74.css.map": "/tshirt/static/css/main.c82bcf74.css.map",
-    "main.bccf68b1.js.map": "/tshirt/static/js/main.bccf68b1.js.map",
+    "main.b32ea2a6.js.map": "/tshirt/static/js/main.b32ea2a6.js.map",
     "453.0464c544.chunk.js.map": "/tshirt/static/js/453.0464c544.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c82bcf74.css",
-    "static/js/main.bccf68b1.js"
+    "static/js/main.b32ea2a6.js"
   ]
 }
