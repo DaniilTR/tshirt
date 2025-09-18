@@ -25,7 +25,7 @@ const dbConfig = {
     host: process.env.DB_HOST || 'localhost',
     user: process.env.DB_USER || 'tshirt_user',
     password: process.env.DB_PASSWORD || 'TshirtPass123!',
-    database: process.env.DB_NAME || 'youtube_tshirt_store',
+    database: process.env.DB_NAME || 'tshirtbd',
     charset: 'utf8mb4'
 };
 

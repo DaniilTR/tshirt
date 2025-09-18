@@ -23,7 +23,7 @@ let db;
             host: process.env.DB_HOST || 'localhost',
             user: process.env.DB_USER || 'tshirt_user',
             password: process.env.DB_PASS || 'TshirtPass123!',
-            database: process.env.DB_NAME || 'youtube_tshirt_store'
+            database: process.env.DB_NAME || 'tshirtbd'
         });
         console.log('✅ Подключение к MySQL успешно');
     } catch (err) {
