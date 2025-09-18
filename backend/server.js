@@ -244,6 +244,26 @@ app.get('/api/youtubers', async (req, res) => {
         res.status(500).json({ error: 'Ошибка сервера' });
     }
 });
+// Get all Customers
+app.get('/api/customers', async (req, res) => {
+    try {
+        const [customers] = await db.execute(`
+            SELECT u.id, u.username, u.full_name, u.email, u.avatar_url, u.bio, u.created_at
+            FROM users u
+            WHERE u.user_type = 'customer'
+            ORDER BY u.created_at DESC
+        `);
+
+        res.json({ 
+            success: true,
+            customers 
+        });
+    } catch (error) {
+        console.error('Ошибка получения покупателей:', error);
+        res.status(500).json({ error: 'Ошибка сервера' });
+    }
+});
+
 
 // ================== START SERVER ==================
 app.listen(PORT, () => {

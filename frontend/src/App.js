@@ -11,6 +11,9 @@ import CreatorsPage from './page/CreatorsPage/CreatorsPage';
 import About from './page/About/About';
 import Product from './page/product/product';
 import Register from './page/Register/Register';
+import Login from './page/Login/Login';
+import CustomerProfile from './page/CustomerProfile/CustomerProfile';
+import YoutuberProfile from './page/YoutuberProfile/YoutuberProfile';
 
 function App() {
   return (
@@ -33,6 +36,9 @@ function App() {
           
           
           {/* другие стр */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/customer-profile" element={<CustomerProfile />} />
+          <Route path="/youtuber-profile" element={<YoutuberProfile />} />
           <Route path="/products" element={<Products />}/>
           <Route path="/cart" element={<Cart/>} />
           <Route path="/creator/:id" element={<CreatorProfile />}/>

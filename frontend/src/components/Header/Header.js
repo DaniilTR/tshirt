@@ -63,8 +63,12 @@ const Header = () => {
           </Link>
 
           {/* Кнопка входа */}
-          <Link to="/register" className="header__login">
+          <Link to="/login" className="header__login">
             Войти
+          </Link>
+          {/* Кнопка входа */}
+          <Link to="/register" className="header__login">
+            Регистрация
           </Link>
 
           {/* Бургер меню для мобильных */}
