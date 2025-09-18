@@ -1,0 +1,30 @@
+// pages/Cart/Cart.scss - Стили для страницы корзины
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.about {
+  padding: 4rem 0;
+  background-color: $color-bg-light; 
+  color: $color-text-primary; 
+
+  &__container {
+    padding-top: 125px;
+    max-width:75%; 
+    margin: 0 auto;
+    padding: 0 1rem;
+    text-align: center;
+  }
+
+  &__title {
+    font-size: 2.5rem;
+    color: $color-primary; 
+    margin-bottom: 2rem;
+  }
+
+  &__text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    color: $color-text-secondary; // вторичный цвет текста
+  }
+}

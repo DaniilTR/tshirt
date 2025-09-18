@@ -1,0 +1,30 @@
+// page/products.scss - Стили для страницы продуктов
+@import "../styles/variables.scss";
+
+.products-page {
+  background: $color-bg-gray;
+  padding: $spacing-2xl ;
+
+  padding-top: 125px;
+
+  &__container {
+    max-width: $container-max-width;
+    margin: 0 auto;
+    padding: 0 $container-padding;
+  }
+git --version
+  &__title {
+    font-family: $font-heading;
+    font-size: $font-size-3xl;
+    font-weight: $font-weight-bold;
+    color: $color-secondary;
+    margin-bottom: $spacing-xl;
+    text-align: center;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: $spacing-lg;
+  }
+}

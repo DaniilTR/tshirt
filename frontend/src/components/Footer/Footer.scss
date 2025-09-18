@@ -1,0 +1,257 @@
+// components/Footer/Footer.scss - Стили для футера
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.footer {
+  background-color: $color-bg-dark;
+  color: $color-text-white;
+  padding: $spacing-3xl 0 $spacing-lg 0;
+  margin-top: auto;
+
+  // Контейнер футера
+  &__container {
+    @include container;
+  }
+
+  // === ВЕРХНЯЯ ЧАСТЬ ФУТЕРА ===
+  &__top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr;
+    gap: $spacing-xl;
+    margin-bottom: $spacing-xl;
+    
+    @include mobile {
+      grid-template-columns: 1fr;
+      gap: $spacing-lg;
+    }
+    
+    @include tablet {
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: $spacing-lg;
+    }
+  }
+
+  // === СЕКЦИИ ФУТЕРА ===
+  &__section {
+    // Базовые стили для секций
+
+    &--newsletter {
+      @include mobile {
+        order: -1; // Показываем подписку первой на мобильных
+      }
+    }
+  }
+
+  // === ЗАГОЛОВКИ ===
+  &__title {
+    font-family: $font-heading;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    color: $color-primary;
+    margin-bottom: $spacing-md;
+  }
+
+  &__subtitle {
+    font-family: $font-heading;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-semibold;
+    color: $color-text-white;
+    margin-bottom: $spacing-md;
+    
+    @include mobile {
+      font-size: $font-size-base;
+    }
+  }
+
+  // === ОПИСАНИЕ ===
+  &__description {
+    color: rgba($color-text-white, 0.8);
+    font-size: $font-size-sm;
+    line-height: 1.6;
+    margin-bottom: $spacing-lg;
+  }
+
+  // === СОЦИАЛЬНЫЕ СЕТИ ===
+  &__social {
+    display: flex;
+    gap: $spacing-md;
+
+    &-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background-color: rgba($color-text-white, 0.1);
+      border-radius: $border-radius-md;
+      font-size: $font-size-lg;
+      text-decoration: none;
+      transition: all $transition-normal;
+
+      &:hover {
+        background-color: $color-primary;
+        transform: translateY(-2px);
+      }
+    }
+  }
+
+  // === ССЫЛКИ ===
+  &__links {
+    list-style: none;
+    
+    li {
+      margin-bottom: $spacing-sm;
+    }
+  }
+
+  &__link {
+    color: rgba($color-text-white, 0.8);
+    text-decoration: none;
+    font-size: $font-size-sm;
+    transition: color $transition-fast;
+    
+    &:hover {
+      color: $color-primary;
+    }
+  }
+
+  // === ПОДПИСКА НА НОВОСТИ ===
+  &__newsletter {
+    display: flex;
+    gap: 0;
+    margin-top: $spacing-md;
+    
+    @include mobile {
+      flex-direction: column;
+      gap: $spacing-sm;
+    }
+
+    &-text {
+      color: rgba($color-text-white, 0.8);
+      font-size: $font-size-sm;
+      margin-bottom: $spacing-md;
+    }
+
+    &-input {
+      flex: 1;
+      padding: $spacing-sm $spacing-md;
+      border: 1px solid rgba($color-text-white, 0.2);
+      border-radius: $border-radius-md 0 0 $border-radius-md;
+      background-color: rgba($color-text-white, 0.1);
+      color: $color-text-white;
+      font-size: $font-size-sm;
+      outline: none;
+      transition: all $transition-normal;
+      
+      @include mobile {
+        border-radius: $border-radius-md;
+      }
+
+      &::placeholder {
+        color: rgba($color-text-white, 0.6);
+      }
+
+      &:focus {
+        border-color: $color-primary;
+        background-color: rgba($color-primary, 0.1);
+      }
+    }
+
+    &-button {
+      padding: $spacing-sm $spacing-md;
+      background-color: $color-primary;
+      color: $color-text-white;
+      border: none;
+      border-radius: 0 $border-radius-md $border-radius-md 0;
+      font-size: $font-size-sm;
+      font-weight: $font-weight-medium;
+      cursor: pointer;
+      transition: all $transition-normal;
+      white-space: nowrap;
+      
+      @include mobile {
+        border-radius: $border-radius-md;
+      }
+
+      &:hover {
+        background-color: darken($color-primary, 10%);
+      }
+    }
+  }
+
+  // === НИЖНЯЯ ЧАСТЬ ФУТЕРА ===
+  &__bottom {
+    @include flex-between;
+    padding-top: $spacing-xl;
+    border-top: 1px solid rgba($color-text-white, 0.2);
+    gap: $spacing-lg;
+    
+    @include mobile {
+      flex-direction: column;
+      text-align: center;
+      gap: $spacing-md;
+    }
+  }
+
+  // === КОПИРАЙТ ===
+  &__copyright {
+    color: rgba($color-text-white, 0.7);
+    font-size: $font-size-sm;
+  }
+
+  // === ПРАВОВАЯ ИНФОРМАЦИЯ ===
+  &__legal {
+    display: flex;
+    gap: $spacing-lg;
+    
+    @include mobile {
+      flex-direction: column;
+      gap: $spacing-sm;
+    }
+
+    &-link {
+      color: rgba($color-text-white, 0.7);
+      text-decoration: none;
+      font-size: $font-size-sm;
+      transition: color $transition-fast;
+
+      &:hover {
+        color: $color-primary;
+      }
+    }
+  }
+
+  // === СПОСОБЫ ОПЛАТЫ ===
+  &__payments {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+
+    &-title {
+      color: rgba($color-text-white, 0.7);
+      font-size: $font-size-sm;
+      white-space: nowrap;
+      
+      @include mobile {
+        display: none;
+      }
+    }
+
+    &-icons {
+      display: flex;
+      gap: $spacing-sm;
+    }
+
+    &-icon {
+      &.footer__payment-icon {
+        font-size: $font-size-lg;
+        opacity: 0.8;
+        transition: opacity $transition-fast;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
