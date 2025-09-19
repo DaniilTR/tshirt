@@ -5,6 +5,8 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
 require('dotenv').config();
+const creatorsRoutes = require('./routes/creators');
+app.use('/api/creators', creatorsRoutes);
 
 // ================== НАСТРОЙКА APP ==================
 const app = express();
@@ -31,6 +33,7 @@ let db;
         process.exit(1);
     }
 })();
+module.exports = db; 
 
 // ================== MIDDLEWARE ==================
 

@@ -9,164 +9,57 @@ const CreatorsPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
-  const [sortBy, setSortBy] = useState('subscribers'); // subscribers, name, rating, products
+  const [sortBy, setSortBy] = useState('subscribers');
 
-  // Демонстрационные данные ютуберов
-  const creatorsData = [
-    {
-      id: 'pewdiepie',
-      name: 'PewDiePie',
-      realName: 'Felix Kjellberg',
-      avatar: '/images/creators/pewdiepie-avatar.jpg',
-      subscribers: '111M',
-      subscribersCount: 111000000,
-      description: 'Самый популярный индивидуальный ютубер в мире! Играю в игры, смотрю мемы.',
-      country: 'Швеция',
-      category: 'Gaming',
-      joinedDate: '2010',
-      isVerified: true,
-      stats: {
-        products: 25,
-        totalSales: '50K+',
-        rating: 4.9,
-        reviews: 1542
-      },
-      tags: ['Gaming', 'Comedy', 'Memes']
-    },
-    {
-      id: 'mrbeast',
-      name: 'MrBeast',
-      realName: 'Jimmy Donaldson',
-      avatar: '/images/creators/mrbeast-avatar.jpg',
-      subscribers: '123M',
-      subscribersCount: 123000000,
-      description: 'Делаю дорогие видео и раздаю деньги! Известен благотворительными проектами.',
-      country: 'США',
-      category: 'Entertainment',
-      joinedDate: '2012',
-      isVerified: true,
-      stats: {
-        products: 18,
-        totalSales: '75K+',
-        rating: 4.8,
-        reviews: 2341
-      },
-      tags: ['Entertainment', 'Charity', 'Challenges']
-    },
-    {
-      id: 'dude-perfect',
-      name: 'Dude Perfect',
-      realName: 'Tyler, Cody, Garrett, Cory, Coby',
-      avatar: '/images/creators/dude-perfect-avatar.jpg',
-      subscribers: '59M',
-      subscribersCount: 59000000,
-      description: 'Невероятные трюки, спортивные челленджи и развлекательный контент.',
-      country: 'США',
-      category: 'Sports',
-      joinedDate: '2009',
-      isVerified: true,
-      stats: {
-        products: 15,
-        totalSales: '30K+',
-        rating: 4.7,
-        reviews: 890
-      },
-      tags: ['Sports', 'Tricks', 'Entertainment']
-    },
-    {
-      id: 'marques-brownlee',
-      name: 'Marques Brownlee',
-      realName: 'Marques Brownlee',
-      avatar: '/images/creators/mkbhd-avatar.jpg',
-      subscribers: '18M',
-      subscribersCount: 18000000,
-      description: 'Обзоры технологий, гаджетов и всего, что связано с tech-миром.',
-      country: 'США',
-      category: 'Tech',
-      joinedDate: '2008',
-      isVerified: true,
-      stats: {
-        products: 12,
-        totalSales: '20K+',
-        rating: 4.9,
-        reviews: 567
-      },
-      tags: ['Tech', 'Reviews', 'Gadgets']
-    },
-    {
-      id: 'emma-chamberlain',
-      name: 'Emma Chamberlain',
-      realName: 'Emma Chamberlain',
-      avatar: '/images/creators/emma-avatar.jpg',
-      subscribers: '12M',
-      subscribersCount: 12000000,
-      description: 'Lifestyle контент, влоги и все о повседневной жизни миллениала.',
-      country: 'США',
-      category: 'Lifestyle',
-      joinedDate: '2017',
-      isVerified: true,
-      stats: {
-        products: 8,
-        totalSales: '15K+',
-        rating: 4.6,
-        reviews: 334
-      },
-      tags: ['Lifestyle', 'Fashion', 'Vlogs']
-    },
-    {
-      id: 'kurzgesagt',
-      name: 'Kurzgesagt',
-      realName: 'Kurzgesagt Team',
-      avatar: '/images/creators/kurzgesagt-avatar.jpg',
-      subscribers: '20M',
-      subscribersCount: 20000000,
-      description: 'Образовательные видео о науке, космосе и философии с красивой анимацией.',
-      country: 'Германия',
-      category: 'Education',
-      joinedDate: '2013',
-      isVerified: true,
-      stats: {
-        products: 22,
-        totalSales: '25K+',
-        rating: 4.8,
-        reviews: 756
-      },
-      tags: ['Education', 'Science', 'Animation']
-    }
-  ];
+  // === Обработчики ===
+  const handleSearch = (e) => {
+    setSearchQuery(e.target.value);
+  };
 
-  // Категории для фильтрации
-  const categories = [
-    { value: 'all', label: 'Все категории', count: creatorsData.length },
-    { value: 'Gaming', label: 'Геймеры', count: creatorsData.filter(c => c.category === 'Gaming').length },
-    { value: 'Entertainment', label: 'Развлечения', count: creatorsData.filter(c => c.category === 'Entertainment').length },
-    { value: 'Sports', label: 'Спорт', count: creatorsData.filter(c => c.category === 'Sports').length },
-    { value: 'Tech', label: 'Технологии', count: creatorsData.filter(c => c.category === 'Tech').length },
-    { value: 'Lifestyle', label: 'Лайфстайл', count: creatorsData.filter(c => c.category === 'Lifestyle').length },
-    { value: 'Education', label: 'Образование', count: creatorsData.filter(c => c.category === 'Education').length }
-  ];
+  const handleCategoryChange = (e) => {
+    setSelectedCategory(e.target.value);
+  };
 
-  // Загрузка данных (имитация API запроса)
+  const handleSortChange = (e) => {
+    setSortBy(e.target.value);
+  };
+  // Загружаем ютуберов из API
   useEffect(() => {
     setIsLoading(true);
-    
-    setTimeout(() => {
-      setCreators(creatorsData);
-      setFilteredCreators(creatorsData);
-      setIsLoading(false);
-    }, 800);
+
+    fetch('http://localhost:5000/api/creators')
+      .then(res => res.json())
+      .then(data => {
+        setCreators(data);
+        setFilteredCreators(data);
+        setIsLoading(false);
+      })
+      .catch(err => {
+        console.error("Ошибка загрузки ютуберов:", err);
+        setIsLoading(false);
+      });
   }, []);
+  
+
+  // Категории для фильтрации (на основе state creators)
+  const categories = [
+    { value: 'all', label: 'Все категории', count: creators.length },
+    { value: 'Gaming', label: 'Геймеры', count: creators.filter(c => c.category === 'Gaming').length },
+    { value: 'Entertainment', label: 'Развлечения', count: creators.filter(c => c.category === 'Entertainment').length },
+    { value: 'Sports', label: 'Спорт', count: creators.filter(c => c.category === 'Sports').length },
+    { value: 'Tech', label: 'Технологии', count: creators.filter(c => c.category === 'Tech').length },
+    { value: 'Lifestyle', label: 'Лайфстайл', count: creators.filter(c => c.category === 'Lifestyle').length },
+    { value: 'Education', label: 'Образование', count: creators.filter(c => c.category === 'Education').length }
+  ];
 
   // Фильтрация и поиск
   useEffect(() => {
-    let filtered = creators;
+    let filtered = [...creators];
 
-    // Фильтр по категории
     if (selectedCategory !== 'all') {
       filtered = filtered.filter(creator => creator.category === selectedCategory);
     }
 
-    // Поиск по имени
     if (searchQuery.trim()) {
       filtered = filtered.filter(creator => 
         creator.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -175,7 +68,6 @@ const CreatorsPage = () => {
       );
     }
 
-    // Сортировка
     filtered.sort((a, b) => {
       switch (sortBy) {
         case 'subscribers':
@@ -193,34 +85,6 @@ const CreatorsPage = () => {
 
     setFilteredCreators(filtered);
   }, [creators, selectedCategory, searchQuery, sortBy]);
-
-  // Обработчик поиска
-  const handleSearch = (e) => {
-    setSearchQuery(e.target.value);
-  };
-
-  // Обработчик смены категории
-  const handleCategoryChange = (category) => {
-    setSelectedCategory(category);
-  };
-
-  // Обработчик сортировки
-  const handleSortChange = (e) => {
-    setSortBy(e.target.value);
-  };
-
-  if (isLoading) {
-    return (
-      <div className="creators-page">
-        <div className="creators-page__container">
-          <div className="creators-page__loading">
-            <div className="creators-page__loading-spinner"></div>
-            <p>Загружаем ютуберов...</p>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="creators-page">
