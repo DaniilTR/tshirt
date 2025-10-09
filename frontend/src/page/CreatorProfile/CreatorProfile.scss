@@ -1,0 +1,513 @@
+// pages/CreatorProfile/CreatorProfile.scss - Стили для профиля ютубера
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.creator-profile {
+  min-height: 100vh;
+  padding-top: 150px; // Отступ для шапки
+
+  &__container {
+    @include container;
+    padding-top: $spacing-xl;
+    padding-bottom: $spacing-3xl;
+  }
+
+  // === БАННЕР ===
+  &__banner {
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: -80px; // Перекрытие с аватаром
+    z-index: 1;
+    
+    @include mobile {
+      height: 200px;
+      margin-bottom: -60px;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    &-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, $color-primary, $color-secondary);
+      @include flex-center;
+      color: $color-text-white;
+      font-size: $font-size-3xl;
+      font-weight: $font-weight-bold;
+    }
+  }
+
+  // === ЗАГОЛОВОК ПРОФИЛЯ ===
+  &__header {
+    display: flex;
+    align-items: end;
+    gap: $spacing-xl;
+    position: relative;
+    z-index: 2;
+    margin-bottom: $spacing-xl;
+    
+    @include mobile {
+      flex-direction: column;
+      align-items: center;
+      gap: $spacing-lg;
+      text-align: center;
+    }
+  }
+
+  // === АВАТАР ===
+  &__avatar {
+    flex-shrink: 0;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    border: 6px solid $color-bg-light;
+    box-shadow: $shadow-lg;
+    overflow: hidden;
+    background: $color-bg-gray;
+    
+    @include mobile {
+      width: 120px;
+      height: 120px;
+      border-width: 4px;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    &-placeholder {
+      width: 100%;
+      height: 100%;
+      @include flex-center;
+      background: $color-bg-gray;
+      font-size: 3rem;
+      color: $color-text-muted;
+    }
+  }
+
+  // === ИНФОРМАЦИЯ О ЮТУБЕРЕ ===
+  &__info {
+    flex: 1;
+    padding-top: $spacing-lg;
+  }
+
+  &__name {
+    font-family: $font-heading;
+    font-size: $font-size-3xl;
+    font-weight: $font-weight-bold;
+    color: $color-text-primary;
+    margin-bottom: $spacing-xs;
+    
+    @include mobile {
+      font-size: $font-size-2xl;
+    }
+  }
+
+  &__real-name {
+    font-size: $font-size-lg;
+    color: $color-text-secondary;
+    margin-bottom: $spacing-lg;
+  }
+
+  // === СТАТИСТИКА ===
+  &__stats {
+    display: flex;
+    gap: $spacing-xl;
+    margin-bottom: $spacing-lg;
+    
+    @include mobile {
+      gap: $spacing-lg;
+      justify-content: center;
+    }
+  }
+
+  &__stat {
+    text-align: center;
+
+    &-value {
+      display: block;
+      font-size: $font-size-xl;
+      font-weight: $font-weight-bold;
+      color: $color-primary;
+    }
+
+    &-label {
+      font-size: $font-size-sm;
+      color: $color-text-muted;
+    }
+  }
+
+  // === МЕТАДАННЫЕ ===
+  &__meta {
+    display: flex;
+    gap: $spacing-lg;
+    margin-bottom: $spacing-lg;
+    
+    @include mobile {
+      flex-direction: column;
+      gap: $spacing-sm;
+    }
+
+    &-item {
+      font-size: $font-size-sm;
+      color: $color-text-secondary;
+    }
+  }
+
+  // === СОЦИАЛЬНЫЕ СЕТИ ===
+  &__social {
+    display: flex;
+    gap: $spacing-md;
+    
+    @include mobile {
+      justify-content: center;
+    }
+
+    &-link {
+      @include button-base;
+      @include button-secondary;
+      padding: $spacing-sm $spacing-md;
+      font-size: $font-size-sm;
+      text-decoration: none;
+      min-height: auto;
+    }
+  }
+
+  // === ТАБЫ ===
+  &__tabs {
+    display: flex;
+    border-bottom: 2px solid $color-border-light;
+    margin-bottom: $spacing-xl;
+    overflow-x: auto;
+    
+    @include mobile {
+      gap: 0;
+    }
+  }
+
+  &__tab {
+    padding: $spacing-md $spacing-lg;
+    border: none;
+    background: none;
+    font-size: $font-size-base;
+    font-weight: $font-weight-medium;
+    color: $color-text-secondary;
+    cursor: pointer;
+    transition: all $transition-normal;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    
+    @include mobile {
+      padding: $spacing-sm $spacing-md;
+      font-size: $font-size-sm;
+    }
+
+    &:hover {
+      color: $color-primary;
+    }
+
+    &--active {
+      color: $color-primary;
+      border-bottom-color: $color-primary;
+    }
+  }
+
+  // === КОНТЕНТ ===
+  &__content {
+    min-height: 400px;
+  }
+
+  // === ТОВАРЫ ===
+  &__products {
+    
+    &-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: $spacing-xl;
+      
+      @include mobile {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: $spacing-lg;
+      }
+    }
+  }
+
+  &__no-products {
+    text-align: center;
+    padding: $spacing-3xl 0;
+    color: $color-text-muted;
+  }
+
+  // === КАРТОЧКА ТОВАРА ===
+  &__product-card {
+    @include card;
+    position: relative;
+    overflow: hidden;
+
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: $shadow-xl;
+    }
+  }
+
+  &__product-badges {
+    position: absolute;
+    top: $spacing-md;
+    left: $spacing-md;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+  }
+
+  &__badge {
+    padding: $spacing-xs $spacing-sm;
+    border-radius: $border-radius-sm;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-bold;
+    color: $color-text-white;
+
+    &--new {
+      background: $color-success;
+    }
+
+    &--sale {
+      background: $color-error;
+    }
+  }
+
+  &__product-image {
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform $transition-slow;
+    }
+
+    &-placeholder {
+      width: 100%;
+      height: 100%;
+      background: $color-bg-gray;
+      @include flex-center;
+      font-size: 3rem;
+      color: $color-text-muted;
+    }
+
+    &:hover img {
+      transform: scale(1.05);
+    }
+  }
+
+  &__product-info {
+    @include card-padding;
+  }
+
+  &__product-title {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-semibold;
+    color: $color-text-primary;
+    margin-bottom: $spacing-sm;
+    @include text-clamp(2);
+  }
+
+  &__product-rating {
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+    margin-bottom: $spacing-md;
+
+    &-stars {
+      color: $color-warning;
+      font-size: $font-size-sm;
+    }
+
+    &-value {
+      font-weight: $font-weight-semibold;
+      color: $color-text-primary;
+      font-size: $font-size-sm;
+    }
+
+    &-count {
+      color: $color-text-muted;
+      font-size: $font-size-sm;
+    }
+  }
+
+  &__product-price {
+    margin-bottom: $spacing-md;
+
+    &-current {
+      font-size: $font-size-xl;
+      font-weight: $font-weight-bold;
+      color: $color-primary;
+    }
+
+    &-original {
+      font-size: $font-size-base;
+      color: $color-text-muted;
+      text-decoration: line-through;
+      margin-left: $spacing-sm;
+    }
+  }
+
+  &__product-actions {
+    display: flex;
+    gap: $spacing-sm;
+
+    &-btn {
+      flex: 1;
+      font-size: $font-size-sm;
+      padding: $spacing-sm;
+      min-height: auto;
+    }
+  }
+
+  // === О КАНАЛЕ ===
+  &__about {
+    max-width: 800px;
+
+    h3 {
+      @include heading-secondary;
+      margin-bottom: $spacing-lg;
+    }
+
+    h4 {
+      font-size: $font-size-lg;
+      font-weight: $font-weight-semibold;
+      color: $color-text-primary;
+      margin: $spacing-xl 0 $spacing-md 0;
+    }
+  }
+
+  &__description {
+    font-size: $font-size-lg;
+    line-height: 1.7;
+    color: $color-text-secondary;
+    margin-bottom: $spacing-xl;
+  }
+
+  &__achievements {
+    
+    &-list {
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-md;
+    }
+  }
+
+  &__achievement {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    padding: $spacing-md;
+    background: $color-bg-gray;
+    border-radius: $border-radius-md;
+
+    &-icon {
+      font-size: $font-size-xl;
+    }
+
+    &-text {
+      color: $color-text-primary;
+      font-weight: $font-weight-medium;
+    }
+  }
+
+  // === ОТЗЫВЫ ===
+  &__reviews {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-lg;
+  }
+
+  &__review {
+    @include card;
+    @include card-padding;
+
+    &-header {
+      @include flex-between;
+      margin-bottom: $spacing-md;
+      
+      @include mobile {
+        flex-direction: column;
+        align-items: start;
+        gap: $spacing-sm;
+      }
+    }
+
+    &-user {
+      display: flex;
+      align-items: center;
+      gap: $spacing-sm;
+    }
+
+    &-name {
+      font-weight: $font-weight-semibold;
+      color: $color-text-primary;
+    }
+
+    &-verified {
+      font-size: $font-size-sm;
+    }
+
+    &-meta {
+      display: flex;
+      align-items: center;
+      gap: $spacing-md;
+    }
+
+    &-rating {
+      color: $color-warning;
+    }
+
+    &-date {
+      color: $color-text-muted;
+      font-size: $font-size-sm;
+    }
+
+    &-comment {
+      color: $color-text-secondary;
+      line-height: 1.6;
+      margin-bottom: $spacing-md;
+    }
+
+    &-product {
+      color: $color-text-muted;
+      font-size: $font-size-sm;
+      font-style: italic;
+    }
+  }
+
+  // === ЗАГРУЗКА ===
+  &__loading {
+    @include flex-center;
+    flex-direction: column;
+    padding: $spacing-3xl 0;
+    gap: $spacing-lg;
+
+    &-spinner {
+      width: 50px;
+      height: 50px;
+      border: 4px solid $color-border-light;
+      border-top: 4px solid $color-primary;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    p {
+      color: $color-text-muted;
+      font-size: $font-size-lg;
+    }
+    }
+}

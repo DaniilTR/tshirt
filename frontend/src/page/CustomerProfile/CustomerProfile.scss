@@ -1,0 +1,49 @@
+@import "../../styles/variables";
+
+.customer-profile {
+  max-width: 800px;
+  margin: 100px auto 0 auto;
+  padding: $spacing-lg;
+  background: $color-bg-gray;
+  border-radius: $border-radius-md;
+  box-shadow: $shadow-sm;
+  font-family: $font-primary;
+
+  h2 {
+    font-family: $font-heading;
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-bold;
+    color: $color-secondary;
+    margin-bottom: $spacing-lg;
+  }
+
+  .user-info {
+    margin-bottom: $spacing-xl;
+
+    p {
+      font-size: $font-size-base;
+      color: $color-text-primary;
+      margin: $spacing-xs 0;
+    }
+
+    img {
+      margin-top: $spacing-md;
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border: 2px solid $color-primary;
+    }
+  }
+
+  .cart-section {
+    margin-top: $spacing-lg;
+
+    h3 {
+      font-size: $font-size-xl;
+      font-weight: $font-weight-semibold;
+      margin-bottom: $spacing-md;
+      color: $color-primary;
+    }
+  }
+}

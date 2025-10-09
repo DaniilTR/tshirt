@@ -1,0 +1,98 @@
+// variables.scss - Глобальные SCSS переменные
+
+// === ЦВЕТА ===
+// Основные цвета бренда
+$color-primary: #ff6b35;           // Оранжевый для кнопок и акцентов
+$color-secondary: #004225;         // Темно-зеленый для заголовков
+$color-accent: #f7931e;            // Желто-оранжевый для уведомлений
+
+// Цвета текста
+$color-text-primary: #333333;     // Основной текст
+$color-text-secondary: #666666;   // Вторичный текст
+$color-text-muted: #999999;       // Приглушенный текст
+$color-text-white: #ffffff;       // Белый текст
+
+// Цвета фонов
+$color-bg-light: #ffffff;         // Светлый фон
+$color-bg-gray: #f8f9fa;          // Серый фон секций
+$color-bg-dark: #2c3e50;          // Темный фон футера
+
+// Цвета состояний
+$color-success: #28a745;          // Успех
+$color-warning: #ffc107;          // Предупреждение
+$color-error: #dc3545;            // Ошибка
+$color-info: #17a2b8;             // Информация
+
+// Цвета границ
+$color-border-light: #e9ecef;     // Светлая граница
+$color-border-medium: #dee2e6;    // Средняя граница
+$color-border-dark: #6c757d;      // Темная граница
+
+// === ШРИФТЫ ===
+$font-primary: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+$font-secondary: 'Roboto', sans-serif;
+$font-heading: 'Poppins', sans-serif;
+
+// Размеры шрифтов
+$font-size-xs: 0.75rem;    // 12px
+$font-size-sm: 0.875rem;   // 14px
+$font-size-base: 1rem;     // 16px
+$font-size-lg: 1.125rem;   // 18px
+$font-size-xl: 1.25rem;    // 20px
+$font-size-2xl: 1.5rem;    // 24px
+$font-size-3xl: 2rem;      // 32px
+$font-size-4xl: 2.5rem;    // 40px
+
+// Жирность шрифтов
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// === ОТСТУПЫ И РАЗМЕРЫ ===
+$spacing-xs: 0.25rem;   // 4px
+$spacing-sm: 0.5rem;    // 8px
+$spacing-md: 1rem;      // 16px
+$spacing-lg: 1.5rem;    // 24px
+$spacing-xl: 2rem;      // 32px
+$spacing-2xl: 3rem;     // 48px
+$spacing-3xl: 4rem;     // 64px
+
+// === КОНТЕЙНЕРЫ И МАКЕТ ===
+$container-max-width: 1200px;
+$container-padding: $spacing-md;
+
+// Высота хедера
+$header-height: 80px;
+$header-height-mobile: 60px;
+
+// === БРЕЙКПОИНТЫ ===
+$breakpoint-xs: 480px;
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+$breakpoint-2xl: 1400px;
+
+// === ТЕНИ И ЭФФЕКТЫ ===
+$shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+$shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+$shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.2);
+
+// Радиусы скругления
+$border-radius-sm: 4px;
+$border-radius-md: 8px;
+$border-radius-lg: 12px;
+$border-radius-xl: 16px;
+
+// === Z-INDEX ===
+$z-header: 1000;
+$z-modal: 2000;
+$z-tooltip: 3000;
+
+// === ПЕРЕХОДЫ ===
+$transition-fast: 0.15s ease-in-out;
+$transition-normal: 0.3s ease-in-out;
+$transition-slow: 0.5s ease-in-out;
