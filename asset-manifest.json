@@ -1,26 +1,16 @@
 {
   "files": {
-    "main.css": "/tshirt/static/css/main.065799c4.css",
-    "main.js": "/tshirt/static/js/main.7929976f.js",
+    "main.css": "/tshirt/static/css/main.cca9c025.css",
+    "main.js": "/tshirt/static/js/main.37d9c248.js",
     "static/js/453.0464c544.chunk.js": "/tshirt/static/js/453.0464c544.chunk.js",
-    "static/media/thebrain.png": "/tshirt/static/media/thebrain.f76e101b3ef3ed5540a7.png",
-    "static/media/a4.png": "/tshirt/static/media/a4.74130afd2137a7b9f4eb.png",
-    "static/media/ninja.png": "/tshirt/static/media/ninja.c314e5e5f96a513e4da4.png",
-    "static/media/ksi.png": "/tshirt/static/media/ksi.8832a2bb6db74f56d43b.png",
-    "static/media/dream.png": "/tshirt/static/media/dream.5cbf62f36c043af22a27.png",
-    "static/media/dantdm.png": "/tshirt/static/media/dantdm.ab97ffa37e149372ac34.png",
-    "static/media/kypl.png": "/tshirt/static/media/kypl.1281ecd7428733a5ad58.png",
-    "static/media/iv1.png": "/tshirt/static/media/iv1.e1fa008ad46692794f43.png",
-    "static/media/mrbeast.png": "/tshirt/static/media/mrbeast.fcc7d808e9502d6a628d.png",
-    "static/media/pewdiepie.png": "/tshirt/static/media/pewdiepie.f400d992def51384d5f2.png",
     "static/media/youtobe.png": "/tshirt/static/media/youtobe.15a9a32d18c96774b454.png",
     "index.html": "/tshirt/index.html",
-    "main.065799c4.css.map": "/tshirt/static/css/main.065799c4.css.map",
-    "main.7929976f.js.map": "/tshirt/static/js/main.7929976f.js.map",
+    "main.cca9c025.css.map": "/tshirt/static/css/main.cca9c025.css.map",
+    "main.37d9c248.js.map": "/tshirt/static/js/main.37d9c248.js.map",
     "453.0464c544.chunk.js.map": "/tshirt/static/js/453.0464c544.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.065799c4.css",
-    "static/js/main.7929976f.js"
+    "static/css/main.cca9c025.css",
+    "static/js/main.37d9c248.js"
   ]
 }
