@@ -1,0 +1,7 @@
+python-dotenv
+mysql-connector-python
+pandas
+numpy
+scikit-learn
+joblib
+tensorflow>=2.0

@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
 require('dotenv').config();
+const fs = require('fs');
 const creatorsRoutes = require('./routes/creators');
 const security = require('./middleware/security');
 
@@ -43,16 +44,38 @@ app.use('/uploads', express.static('uploads'));
 const PORT = process.env.PORT || 5000;
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
 
+
 // ================== ПОДКЛЮЧЕНИЕ К БД ==================
 let db;
 (async () => {
     try {
-        db = await mysql.createPool({
+        // Поддерживаем разные имена переменных окружения для пароля
+        const dbPassword = process.env.DB_PASSWORD || process.env.DB_PASS || 'TshirtPass123!';
+
+        // Опциональная SSL-конфигурация
+        let sslOption;
+        if (process.env.DB_SSL_CA) {
+            try {
+                const ca = fs.readFileSync(process.env.DB_SSL_CA);
+                sslOption = { ca };
+                console.log('🔒 Используется SSL CA для подключения к БД:', process.env.DB_SSL_CA);
+            } catch (e) {
+                console.warn('⚠️  Переменная DB_SSL_CA задана, но файл не прочитан:', process.env.DB_SSL_CA, e.message);
+                // Не прерываем — продолжим без sslOption
+            }
+        } else if (process.env.DB_REQUIRE_SSL === 'true' || process.env.DB_SSL === 'true') {
+            // Если явно требуется SSL, но CA не передан, ставим rejectUnauthorized=false — это отключит проверку сертификата
+            sslOption = { rejectUnauthorized: false };
+            console.log('🔒 Используется SSL (без проверки CA) для подключения к БД');
+        }
+
+        db = await mysql.createPool(Object.assign({
             host: process.env.DB_HOST || 'localhost',
             user: process.env.DB_USER || 'tshirt_user',
-            password: process.env.DB_PASS || 'TshirtPass123!',
+            password: dbPassword,
             database: process.env.DB_NAME || 'tshirtbd'
-        });
+        }, sslOption ? { ssl: sslOption } : {}));
+
         console.log('✅ Подключение к MySQL успешно');
     } catch (err) {
         console.error('❌ Ошибка подключения к MySQL:', err);

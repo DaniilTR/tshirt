@@ -33,22 +33,41 @@ function Products() {
     }
   };
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:5000/api/products")
-      .then((res) => {
-        const encryptedData = res.data.encrypted;
-        const decryptedJson = decrypt(encryptedData);
-        const data = JSON.parse(decryptedJson).products || [];
-        setProducts(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error(err);
-        setError("Не удалось загрузить товары");
-        setLoading(false);
-      });
-  }, []);
+
+useEffect(() => {
+  axios
+    .get("http://localhost:5000/api/products")
+    .then((res) => {
+      // 1️⃣ Выводим то, что пришло от сервера
+      console.log("Ответ от сервера:", res.data);
+
+      const encryptedData = res.data.encrypted;
+
+      // 2️⃣ Проверяем, что зашифрованные данные действительно пришли
+      console.log("Зашифрованные данные:", encryptedData);
+
+      // 3️⃣ Расшифровываем
+      const decryptedJson = decrypt(encryptedData);
+
+      // 4️⃣ Смотрим, что получилось после расшифровки
+      console.log("Расшифрованный JSON (строка):", decryptedJson);
+
+      // 5️⃣ Преобразуем строку в объект
+      const data = JSON.parse(decryptedJson).products || [];
+
+      // 6️⃣ И наконец, выводим массив товаров
+      console.log("Массив товаров:", data);
+
+      setProducts(data);
+      setLoading(false);
+    })
+    .catch((err) => {
+      console.error("Ошибка при загрузке:", err);
+      setError("Не удалось загрузить товары");
+      setLoading(false);
+    });
+}, []);
+
 
   if (loading) return <p>Загрузка товаров...</p>;
   if (error) return <p>{error}</p>;
