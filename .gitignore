@@ -1,0 +1,12 @@
+/models/
+# Ignore model files
+/models/*.joblib
+/models/*.pkl
+/models/*.h5
+/models/*.sav
+/models/*.model
+/models/*.bin
+/models/*.ckpt
+/models/*.pt
+/models/*.pth
+/models/*.tflite
