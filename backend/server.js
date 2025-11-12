@@ -73,7 +73,8 @@ let db;
             host: process.env.DB_HOST || 'localhost',
             user: process.env.DB_USER || 'tshirt_user',
             password: dbPassword,
-            database: process.env.DB_NAME || 'tshirtbd'
+            database: process.env.DB_NAME || 'tshirtbd',
+            port: Number(process.env.DB_PORT) || 3306
         }, sslOption ? { ssl: sslOption } : {}));
 
         console.log('✅ Подключение к MySQL успешно');

@@ -4,4 +4,5 @@ pandas
 numpy
 scikit-learn
 joblib
-tensorflow>=2.0
+# Примечание: TensorFlow удален, так как не используется в скриптах и недоступен для Python 3.14 на Windows.
+# Если понадобится, используйте отдельное окружение с Python 3.10/3.12 и установите tensorflow там.

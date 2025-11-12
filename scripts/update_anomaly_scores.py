@@ -18,6 +18,7 @@ DB_HOST = os.getenv('DB_HOST', 'localhost')
 DB_USER = os.getenv('DB_USER', 'root')
 DB_PASSWORD = os.getenv('DB_PASSWORD', '')
 DB_NAME = os.getenv('DB_NAME', '')
+DB_PORT = int(os.getenv('DB_PORT', '3306'))
 
 # Загрузка моделей и scaler
 scaler_path = 'models/scaler.joblib'
@@ -37,6 +38,7 @@ conn = mysql.connector.connect(
     user=DB_USER,
     password=DB_PASSWORD,
     database=DB_NAME,
+    port=DB_PORT,
     autocommit=False
 )
 cursor = conn.cursor(dictionary=True)

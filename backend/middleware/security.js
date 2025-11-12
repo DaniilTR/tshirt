@@ -1,6 +1,7 @@
 // middleware/security.js - Рабочая версия
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
+const { ipKeyGenerator } = require('express-rate-limit');
 
 // ============ SQL INJECTION PROTECTION ============
 const sqlInjectionProtection = (req, res, next) => {
@@ -129,9 +130,7 @@ const rateLimitAuth = rateLimit({
     },
     standardHeaders: true,
     legacyHeaders: false,
-    keyGenerator: (req) => {
-        return req.ip + ':' + (req.body.username || req.body.email || 'unknown');
-    }
+    keyGenerator: (req, res) => ipKeyGenerator(req) + ':' + (req.body?.username || req.body?.email || 'unknown')
 });
 
 // ============ SECURITY HEADERS ============
