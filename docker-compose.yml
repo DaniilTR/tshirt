@@ -1,0 +1,62 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: tshirt_backend
+    ports:
+      - "5000:5000"
+    environment:
+      - DB_HOST=db
+      - DB_USER=tshirt_user
+      - DB_PASSWORD=TshirtPass123!
+      - DB_NAME=tshirtbd
+    depends_on:
+      - db
+    restart: always
+
+  frontend:
+    build: ./frontend
+    container_name: tshirt_frontend
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    tty: true
+    depends_on:
+      - backend
+    restart: always
+
+  db:
+    image: mysql:8.0
+    container_name: tshirt_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 22102004d
+      MYSQL_DATABASE: tshirtbd
+      MYSQL_USER: tshirt_user
+      MYSQL_PASSWORD: TshirtPass123!
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+  backup:
+    restart: always
+    image: mysql:8.0
+    container_name: tshirt_db_backup
+    volumes:
+      - ./backups:/backup
+      - ./scripts/backup.sh:/usr/local/bin/backup.sh:ro
+    environment:
+      - DB_HOST=db
+      - DB_USER=tshirt_user
+      - DB_PASSWORD=TshirtPass123!
+      - DB_NAME=tshirtbd
+      - RETENTION_DAYS=1
+    depends_on:
+      - db
+    entrypoint: ["sh", "-c", "chmod +x /usr/local/bin/backup.sh && while true; do /usr/local/bin/backup.sh || echo 'backup failed'; sleep 86400; done"]
+
+volumes:
+  db_data:

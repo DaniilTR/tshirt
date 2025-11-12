@@ -1,0 +1,78 @@
+@import "../../styles/variables.scss";
+
+.register-container {
+    margin-top: 100px;
+  max-width: 400px;
+    margin-left: 33%;
+  padding: $spacing-xl;
+  background: $color-bg-light;
+  border: 1px solid $color-border-light;
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-md;
+  font-family: $font-primary;
+
+  h2 {
+    font-family: $font-heading;
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-bold;
+    color: $color-secondary;
+    margin-bottom: $spacing-lg;
+    text-align: center;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+
+    input,
+    select {
+      padding: $spacing-sm $spacing-md;
+      font-size: $font-size-base;
+      border: 1px solid $color-border-medium;
+      border-radius: $border-radius-md;
+      outline: none;
+      transition: border-color $transition-fast, box-shadow $transition-fast;
+
+      &:focus {
+        border-color: $color-primary;
+        box-shadow: 0 0 0 2px rgba($color-primary, 0.2);
+      }
+    }
+
+    button {
+      background: $color-primary;
+      color: $color-text-white;
+      font-size: $font-size-base;
+      font-weight: $font-weight-semibold;
+      padding: $spacing-sm $spacing-md;
+      border: none;
+      border-radius: $border-radius-md;
+      cursor: pointer;
+      transition: background $transition-normal, transform $transition-fast;
+
+      &:hover {
+        background: darken($color-primary, 8%);
+        transform: translateY(-2px);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+    }
+  }
+
+  .message {
+    margin-top: $spacing-md;
+    font-size: $font-size-sm;
+    text-align: center;
+
+    &.success {
+      color: $color-success;
+    }
+
+    &.error {
+      color: $color-error;
+    }
+  }
+}

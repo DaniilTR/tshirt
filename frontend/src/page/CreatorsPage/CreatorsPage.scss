@@ -1,0 +1,485 @@
+// pages/CreatorsPage/CreatorsPage.scss - Стили для страницы ютуберов
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.creators-page {
+  @include section-padding;
+  min-height: 100vh;
+
+  &__container {
+    @include container;
+    padding-top: 50px;
+  }
+
+  // === ЗАГОЛОВОК СТРАНИЦЫ ===
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: $spacing-3xl;
+    padding-bottom: $spacing-xl;
+    border-bottom: 2px solid $color-border-light;
+    
+    @include mobile {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: $spacing-xl;
+    }
+  }
+
+  &__title-section {
+    flex: 1;
+  }
+
+  &__title {
+    padding-bottom: 125px;
+    @include heading-primary;
+    margin-bottom: $spacing-md;
+  }
+
+  &__subtitle {
+    font-size: $font-size-lg;
+    color: $color-text-secondary;
+    line-height: 1.6;
+  }
+
+  // === СТАТИСТИКА ===
+  &__stats {
+    display: flex;
+    gap: $spacing-xl;
+    
+    @include mobile {
+      justify-content: center;
+    }
+  }
+
+  &__stat {
+    text-align: center;
+
+    &-number {
+      display: block;
+      font-family: $font-heading;
+      font-size: $font-size-2xl;
+      font-weight: $font-weight-bold;
+      color: $color-primary;
+      margin-bottom: $spacing-xs;
+    }
+
+    &-label {
+      font-size: $font-size-sm;
+      color: $color-text-muted;
+    }
+  }
+
+  // === ФИЛЬТРЫ ===
+  &__filters {
+    background: $color-bg-gray;
+    padding: $spacing-xl;
+    border-radius: $border-radius-lg;
+    margin-bottom: $spacing-xl;
+    
+    @include mobile {
+      padding: $spacing-lg;
+    }
+  }
+
+  // === ПОИСК ===
+  &__search {
+    position: relative;
+    margin-bottom: $spacing-lg;
+
+    &-input {
+      width: 100%;
+      padding: $spacing-md $spacing-xl $spacing-md $spacing-md;
+      border: 2px solid $color-border-light;
+      border-radius: $border-radius-lg;
+      font-size: $font-size-base;
+      outline: none;
+      transition: all $transition-normal;
+      background: $color-bg-light;
+
+      &:focus {
+        border-color: $color-primary;
+        box-shadow: 0 0 0 4px rgba($color-primary, 0.1);
+      }
+
+      &::placeholder {
+        color: $color-text-muted;
+      }
+    }
+
+    &-icon {
+      position: absolute;
+      right: $spacing-md;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: $font-size-lg;
+      color: $color-text-muted;
+      pointer-events: none;
+    }
+  }
+
+  // === КАТЕГОРИИ ===
+  &__categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-sm;
+    margin-bottom: $spacing-lg;
+  }
+
+  &__category {
+    padding: $spacing-sm $spacing-md;
+    border: 2px solid $color-border-medium;
+    background: $color-bg-light;
+    border-radius: $border-radius-md;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: $color-text-secondary;
+    cursor: pointer;
+    transition: all $transition-normal;
+    white-space: nowrap;
+
+    &:hover {
+      border-color: $color-primary;
+      color: $color-primary;
+    }
+
+    &--active {
+      background: $color-primary;
+      border-color: $color-primary;
+      color: $color-text-white;
+    }
+  }
+
+  // === СОРТИРОВКА ===
+  &__sort {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    
+    @include mobile {
+      justify-content: center;
+    }
+
+    label {
+      font-size: $font-size-sm;
+      font-weight: $font-weight-medium;
+      color: $color-text-primary;
+    }
+
+    &-select {
+      padding: $spacing-sm $spacing-md;
+      border: 2px solid $color-border-medium;
+      border-radius: $border-radius-md;
+      background: $color-bg-light;
+      font-size: $font-size-sm;
+      outline: none;
+      cursor: pointer;
+      transition: border-color $transition-normal;
+
+      &:focus {
+        border-color: $color-primary;
+      }
+    }
+  }
+
+  // === РЕЗУЛЬТАТЫ ===
+  &__results {
+    margin-bottom: $spacing-lg;
+
+    &-count {
+      color: $color-text-secondary;
+      font-size: $font-size-sm;
+    }
+  }
+
+  // === СЕТКА ЮТУБЕРОВ ===
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: $spacing-xl;
+    margin-bottom: $spacing-3xl;
+    
+    @include mobile {
+      grid-template-columns: 1fr;
+      gap: $spacing-lg;
+    }
+  }
+
+  // === КАРТОЧКА ЮТУБЕРА ===
+  &__creator-card {
+    @include card;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: all $transition-normal;
+
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: $shadow-xl;
+
+      .creators-page__creator-overlay {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .creators-page__creator-avatar img {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  // === АВАТАР ===
+  &__creator-avatar {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto $spacing-lg auto;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid $color-bg-light;
+    box-shadow: $shadow-md;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform $transition-slow;
+    }
+
+    &-placeholder {
+      width: 100%;
+      height: 100%;
+      @include flex-center;
+      background: $color-bg-gray;
+      font-size: 2.5rem;
+      color: $color-text-muted;
+    }
+  }
+
+  &__creator-verified {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: $color-bg-light;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    @include flex-center;
+    font-size: $font-size-sm;
+    box-shadow: $shadow-sm;
+  }
+
+  // === ИНФОРМАЦИЯ О ЮТУБЕРЕ ===
+  &__creator-info {
+    @include card-padding;
+    text-align: center;
+  }
+
+  &__creator-name {
+    font-family: $font-heading;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    color: $color-text-primary;
+    margin-bottom: $spacing-xs;
+    @include text-truncate;
+  }
+
+  &__creator-real-name {
+    color: $color-text-secondary;
+    font-size: $font-size-sm;
+    margin-bottom: $spacing-md;
+    @include text-truncate;
+  }
+
+  // === СТАТИСТИКА ЮТУБЕРА ===
+  &__creator-stats {
+    display: flex;
+    justify-content: center;
+    gap: $spacing-lg;
+    margin-bottom: $spacing-md;
+  }
+
+  &__creator-stat {
+    text-align: center;
+
+    &-value {
+      display: block;
+      font-size: $font-size-lg;
+      font-weight: $font-weight-bold;
+      color: $color-primary;
+    }
+
+    &-label {
+      font-size: $font-size-xs;
+      color: $color-text-muted;
+    }
+  }
+
+  // === ОПИСАНИЕ ===
+  &__creator-description {
+    color: $color-text-secondary;
+    font-size: $font-size-sm;
+    line-height: 1.5;
+    margin-bottom: $spacing-md;
+    @include text-clamp(2);
+  }
+
+  // === ТЕГИ ===
+  &__creator-tags {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: $spacing-xs;
+    margin-bottom: $spacing-md;
+  }
+
+  &__creator-tag {
+    padding: $spacing-xs $spacing-sm;
+    background: rgba($color-primary, 0.1);
+    color: $color-primary;
+    border-radius: $border-radius-sm;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-medium;
+  }
+
+  // === МЕТАДАННЫЕ ===
+  &__creator-meta {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: $spacing-sm;
+    font-size: $font-size-xs;
+    color: $color-text-muted;
+
+    &-item {
+      white-space: nowrap;
+    }
+  }
+
+  // === ОВЕРЛЕЙ ПРИ НАВЕДЕНИИ ===
+  &__creator-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba($color-primary, 0.95);
+    @include flex-center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all $transition-normal;
+  }
+
+  &__creator-action {
+    color: $color-text-white;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-semibold;
+    text-align: center;
+  }
+
+  // === НЕТ РЕЗУЛЬТАТОВ ===
+  &__no-results {
+    text-align: center;
+    padding: $spacing-3xl 0;
+
+    &-icon {
+      font-size: 4rem;
+      margin-bottom: $spacing-lg;
+    }
+
+    &-title {
+      @include heading-secondary;
+      margin-bottom: $spacing-md;
+      color: $color-text-muted;
+    }
+
+    &-description {
+      color: $color-text-secondary;
+      font-size: $font-size-lg;
+      margin-bottom: $spacing-xl;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  // === ПРИЗЫВ К ДЕЙСТВИЮ ===
+  &__cta {
+    background: linear-gradient(135deg, $color-primary, $color-accent);
+    color: $color-text-white;
+    padding: $spacing-3xl;
+    border-radius: $border-radius-xl;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(255, 255, 255, 0.05) 10px,
+        rgba(255, 255, 255, 0.05) 20px
+      );
+      animation: float 10s linear infinite;
+    }
+
+    &-title {
+      font-family: $font-heading;
+      font-size: $font-size-2xl;
+      font-weight: $font-weight-bold;
+      margin-bottom: $spacing-md;
+      position: relative;
+      z-index: 2;
+      
+      @include mobile {
+        font-size: $font-size-xl;
+      }
+    }
+
+    &-description {
+      font-size: $font-size-lg;
+      line-height: 1.6;
+      margin-bottom: $spacing-xl;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      z-index: 2;
+      
+      @include mobile {
+        font-size: $font-size-base;
+      }
+    }
+
+    &-button {
+      background: $color-bg-light;
+      color: $color-primary;
+      border: none;
+      position: relative;
+        z-index: 2;
+        padding: $spacing-md $spacing-xl;
+        font-size: $font-size-base;
+        font-weight: $font-weight-bold;
+        border-radius: $border-radius-lg;
+        cursor: pointer;
+        transition: all $transition-normal;
+    }
+
+      &:hover {
+        background: $color-primary;
+        color: $color-text-white;
+        box-shadow: $shadow-lg;
+      }
+    }
+    }

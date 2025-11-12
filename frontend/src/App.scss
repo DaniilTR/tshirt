@@ -1,0 +1,92 @@
+// App.scss - Основные стили приложения
+// Импортируем глобальные переменные и миксины
+@import './styles/variables.scss';
+@import './styles/mixins.scss';
+
+// Сброс стилей и базовые настройки
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $font-primary;
+  color: $color-text-primary;
+  line-height: 1.6;
+  background-color: $color-bg-light;
+}
+
+// Основной контейнер приложения
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  
+  // Основной контент между хедером и футером
+  .main-content {
+    flex: 1;
+    padding-top: $header-height; // отступ под фиксированный хедер
+    
+    // Адаптивность для мобильных устройств
+    @include mobile {
+      padding-top: $header-height-mobile;
+    }
+  }
+}
+
+// Общие классы для контейнеров
+.container {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+  
+  @include mobile {
+    padding: 0 $spacing-sm;
+  }
+}
+
+// Утилитарные классы
+.text-center {
+  text-align: center;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn {
+  @include button-base;
+  
+  &--primary {
+    @include button-primary;
+  }
+  
+  &--secondary {
+    @include button-secondary;
+  }
+}
+
+// Адаптивная сетка
+.grid {
+  display: grid;
+  gap: $spacing-md;
+  
+  &--2-cols {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+  
+  &--3-cols {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+  
+  &--4-cols {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    
+    @include mobile {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
